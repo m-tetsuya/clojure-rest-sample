@@ -11,6 +11,7 @@
      )
   
   (:use
+     [ring.middleware.reload]
      [korma.core]
      [korma.db]
      )
@@ -82,7 +83,8 @@
 
 (def handler 
   (-> app 
-    (wrap-params)))  
+    (wrap-params)
+    (wrap-reload '[clojure-rest-sample.models])))  
 
 ;(defn -main []
 ;  (run-jetty #'handler {:port 3000}))
